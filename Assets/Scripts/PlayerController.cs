@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    //動畫
     private Animator playerAnim;
+    //粒子
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
+    //音效
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
+    //參數
     public float jumpForce = 1000;
     private int maxJumpTimes = 2;
     private int jumpCounter = 0;
@@ -41,13 +45,14 @@ public class PlayerController : MonoBehaviour
             jumpCounter += 1;
             jumpForce = 500;
         }
+        //衝刺功能
         if (Input.GetKey("d")){
             doubleSpeed = true;
-            playerAnim.SetFloat("Speed_f", 2.0f);
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
         }
         else if (doubleSpeed){
             doubleSpeed = false;
-            playerAnim.SetFloat("Speed_f", 1.0f);
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
         }
         
     }
