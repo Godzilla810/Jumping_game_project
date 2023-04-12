@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     private float speed = 30;
+    private float dashSpeed = 60;
     private PlayerController playerControllerScript;
     private float leftBound = -15;
 
@@ -19,7 +20,13 @@ public class MoveLeft : MonoBehaviour
     {
         //一個相對位移的概念
         if (playerControllerScript.gameOver == false){
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            if (playerControllerScript.doubleSpeed){
+                transform.Translate(Vector3.left * Time.deltaTime * dashSpeed);
+            }
+            else {
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            }
+            
         }
         //刪除畫面外的障礙物
         if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle")){
